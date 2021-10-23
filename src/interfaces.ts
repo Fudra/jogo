@@ -2,7 +2,7 @@ import OpType from './operations'
 
 export interface Rule {
     type: OpType,
-    check: (value: string) => boolean,
+    check: (value: Value) => boolean,
     cast: (value: any) => any | null,
     next: Array<OpType>,
 }
@@ -12,8 +12,10 @@ export interface Position {
     column: Number,
 }
 
+export type Value = Number | String | null;
+
 export interface Token {
     type: OpType,
-    value: Number | String | null,
+    value: Value,
     position: Position,
 }

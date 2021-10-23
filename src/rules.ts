@@ -1,40 +1,41 @@
 import OpType from './operations';
 import { Rule } from './interfaces'
+import { castValueToString } from './helper';
 
 const rules: Array<Rule> = [
     {
         type: OpType.OP_COMMENT,
-        check: (value) => value[0] === '#',
+        check: (value) => castValueToString(value)[0] === '#',
         cast: (value) => value,
         next: [],
     },
     {
         type: OpType.OP_FORWARD,
-        check: (value) => ['fd', 'forward'].includes(value),
+        check: (value) => ['fd', 'forward'].includes(castValueToString(value)),
         cast: () => null,
         next: [OpType.OP_NUMBER],
     },
     {
         type: OpType.OP_BACKWARD,
-        check: (value) => ['bk', 'backward'].includes(value),
+        check: (value) => ['bk', 'backward'].includes(castValueToString(value)),
         cast: () => null,
         next: [OpType.OP_NUMBER],
     },
     {
         type: OpType.OP_LEFT,
-        check: (value) => ['lt', 'left'].includes(value),
+        check: (value) => ['lt', 'left'].includes(castValueToString(value)),
         cast: () => null,
         next: [OpType.OP_NUMBER],
     },
     {
         type: OpType.OP_RIGHT,
-        check: (value) => ['rt', 'right'].includes(value),
+        check: (value) => ['rt', 'right'].includes(castValueToString(value)),
         cast: () => null,
         next: [OpType.OP_NUMBER],
     },
     {
         type: OpType.OP_NUMBER,
-        check: (value) => Number.isInteger(+value),
+        check: (value) => Number.isInteger(+castValueToString(value)),
         cast: (value) => +value,
         next: [],
     },

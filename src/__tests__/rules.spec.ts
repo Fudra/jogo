@@ -84,7 +84,7 @@ test('a comment string is not change by the rule caster', () => {
 })
 
 
-test('the next operation expect by movement is a number', () => {
+test('the next expect token by a movement is a number', () => {
     const fdRule = rules.find((rule) => rule.type === OpType.OP_FORWARD);
     expect(fdRule?.next).toContain(OpType.OP_NUMBER);
     expect(fdRule?.next).toHaveLength(1);
@@ -92,5 +92,16 @@ test('the next operation expect by movement is a number', () => {
     const bkRule = rules.find((rule) => rule.type === OpType.OP_BACKWARD);
     expect(bkRule?.next).toContain(OpType.OP_NUMBER);
     expect(bkRule?.next).toHaveLength(1);
+})
+
+
+test('the next expect token by a trun is a number', () => {
+    const rtRule = rules.find((rule) => rule.type === OpType.OP_LEFT);
+    expect(rtRule?.next).toContain(OpType.OP_NUMBER);
+    expect(rtRule?.next).toHaveLength(1);
+
+    const ltRule = rules.find((rule) => rule.type === OpType.OP_RIGHT);
+    expect(ltRule?.next).toContain(OpType.OP_NUMBER);
+    expect(ltRule?.next).toHaveLength(1);
 })
 
