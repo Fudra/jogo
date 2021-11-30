@@ -31,7 +31,7 @@ export const tokenzieLine = (line: string, row: number): Array<Token> => {
             beginComment = true;
         }
 
-        // if komment, skip line to the end
+        // if comment, skip line to the end
         if (beginComment) {
             word += char;
 
