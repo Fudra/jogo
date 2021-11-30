@@ -39,6 +39,7 @@ const rules: Array<Rule> = [
         cast: (value) => +value,
         next: [],
     },
+    // should be the last rule  
     {
         type: OpType.OP_UNKNOW,
         check: () => true,

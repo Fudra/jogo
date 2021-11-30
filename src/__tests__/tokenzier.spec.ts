@@ -1,5 +1,7 @@
 import { Token } from "../interfaces";
 import OpType from "../operations";
+import rules from '../rules';
+
 import tokenzier, { checkIfLineEnds, createToken, findRuleByToken, getNextCharInLine, tokenzieLine } from "../tokenzier";
 
 describe('tokenizer', () => {
@@ -17,9 +19,9 @@ describe('tokenizer', () => {
     })
 
     test('tokenizer', () => {
-        expect(tokenzier("")).toStrictEqual([]);
-        expect(tokenzier("")).toHaveLength(0);
-        expect(tokenzier("fw 40\n lt 20")).toHaveLength(4)
+        expect(tokenzier("", rules)).toStrictEqual([]);
+        expect(tokenzier("", rules)).toHaveLength(0);
+        expect(tokenzier("fw 40\n lt 20", rules)).toHaveLength(4)
     })
 
     test('token position', () => {
@@ -32,12 +34,12 @@ describe('tokenizer', () => {
             }
         }
 
-        expect(createToken("# abc", 0, 4)).toMatchObject<Token>(token)
-        expect(createToken("   # abc   ", 0, 10)).toMatchObject<Token>(token)
+        expect(createToken("# abc", 0, 4, rules)).toMatchObject<Token>(token)
+        expect(createToken("   # abc   ", 0, 10, rules)).toMatchObject<Token>(token)
     })
 
     test('create a token', () => {
-        expect(createToken("abc", 0, 2)).toMatchObject<Token>({
+        expect(createToken("abc", 0, 2, rules)).toMatchObject<Token>({
             type: OpType.OP_UNKNOW,
             value: 'abc',
             position: {
@@ -46,7 +48,7 @@ describe('tokenizer', () => {
             }
         })
 
-        expect(createToken("lt", 0, 1)).toMatchObject<Token>({
+        expect(createToken("lt", 0, 1, rules)).toMatchObject<Token>({
             type: OpType.OP_LEFT,
             value: null,
             position: {
@@ -55,7 +57,7 @@ describe('tokenizer', () => {
             }
         })
 
-        expect(createToken("    # space    ", 0, 14)).toMatchObject<Token>({
+        expect(createToken("    # space    ", 0, 14, rules)).toMatchObject<Token>({
             type: OpType.OP_COMMENT,
             value: "# space",
             position: {
@@ -67,35 +69,39 @@ describe('tokenizer', () => {
 
     test("find token by rule", () => {
         const tokens = [
-            { token: "# comment", type: OpType.OP_COMMENT },
-            { token: "fd", type: OpType.OP_FORWARD },
-            { token: "forward", type: OpType.OP_FORWARD },
-            { token: "bk", type: OpType.OP_BACKWARD },
-            { token: "backward", type: OpType.OP_BACKWARD },
-            { token: "lt", type: OpType.OP_LEFT },
-            { token: "left", type: OpType.OP_LEFT },
-            { token: "rt", type: OpType.OP_RIGHT },
-            { token: "right", type: OpType.OP_RIGHT },
-            { token: "123", type: OpType.OP_NUMBER },
-            { token: "dhahsdja", type: OpType.OP_UNKNOW },
+            { token: "# comment", type: OpType.OP_COMMENT, value: "# comment" },
+            { token: "fd", type: OpType.OP_FORWARD, value: null },
+            { token: "forward", type: OpType.OP_FORWARD, value: null },
+            { token: "bk", type: OpType.OP_BACKWARD, value: null },
+            { token: "backward", type: OpType.OP_BACKWARD, value: null },
+            { token: "lt", type: OpType.OP_LEFT, value: null },
+            { token: "left", type: OpType.OP_LEFT, value: null },
+            { token: "rt", type: OpType.OP_RIGHT, value: null },
+            { token: "right", type: OpType.OP_RIGHT, value: null },
+            { token: "123", type: OpType.OP_NUMBER, value: 123 },
+            { token: "dhahsdja", type: OpType.OP_UNKNOW, value: "dhahsdja" },
         ]
 
 
-        for (const { token, type } of tokens) {
-            expect(findRuleByToken(token)).toMatchObject({ type })
+        for (const { token, type, value } of tokens) {
+            const tkn = findRuleByToken(token, rules);
+            expect(tkn).toMatchObject({ type })
+            expect(tkn.cast(value)).toBe(value)
         }
 
     })
 
 
     test("rules throw an error", () => {
-        expect(() => findRuleByToken("")).toThrow(Error)
-        expect(() => findRuleByToken(null)).toThrow(Error)
+        expect(() => findRuleByToken("", rules)).toThrow(Error)
+        expect(() => findRuleByToken(null, rules)).toThrow(Error)
+
+        expect(() => findRuleByToken("unknow", [])).toThrow(Error)
     })
 
 
     test('a line can be tokenized', () => {
-        const tokens = tokenzieLine("lt 20 fd 10", 0);
+        const tokens = tokenzieLine("lt 20 fd 10", 0, rules);
 
         const expectArray =
             [
@@ -124,6 +130,23 @@ describe('tokenizer', () => {
         expect(tokens).toStrictEqual(expectArray)
 
     })
+
+    test('a comment is recognized', () => {
+        const tokens = tokenzieLine("# some comment", 0, rules);
+
+        const expectArray =
+            [
+                {
+                    type: OpType.OP_COMMENT,
+                    value: "# some comment",
+                    position: { line: 1, column: 1 }
+                },
+            ];
+
+        expect(tokens).toStrictEqual(expectArray)
+
+    })
+
 })
 
 

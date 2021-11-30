@@ -1,14 +1,13 @@
-import rules from './rules';
 import { Rule, Token, Value } from './interfaces'
 
 
-export default (program: string): Array<Token> => {
+export default (program: string, rules: Array<Rule>): Array<Token> => {
     const lines = program.split('\n');
 
     const tokens: Array<Token> = [];
 
     for (const [index, line] of lines.entries()) {
-        const items = tokenzieLine(line, index)
+        const items = tokenzieLine(line, index, rules)
         tokens.push(...items);
     }
 
@@ -16,7 +15,7 @@ export default (program: string): Array<Token> => {
 }
 
 
-export const tokenzieLine = (line: string, row: number): Array<Token> => {
+export const tokenzieLine = (line: string, row: number, rules: Array<Rule>): Array<Token> => {
     const tokens: Array<Token> = [];
 
     let word = '';
@@ -36,7 +35,7 @@ export const tokenzieLine = (line: string, row: number): Array<Token> => {
             word += char;
 
             if (index == line.length - 1) {
-                tokens.push(createToken(word, row, index));
+                tokens.push(createToken(word, row, index, rules));
             }
 
             continue;
@@ -49,14 +48,14 @@ export const tokenzieLine = (line: string, row: number): Array<Token> => {
         }
 
         if (checkIfLineEnds(char, nextChar)) {
-            tokens.push(createToken(word, row, index));
+            tokens.push(createToken(word, row, index, rules));
         }
     }
 
     return tokens;
 }
 
-export const findRuleByToken = (value: Value): Rule => {
+export const findRuleByToken = (value: Value, rules: Array<Rule>): Rule => {
     if (value?.toString().length === 0 || value === null) {
         throw new Error(`Value is an emtpy string or null`)
     }
@@ -70,8 +69,8 @@ export const findRuleByToken = (value: Value): Rule => {
     return rule;
 }
 
-export const createToken = (word: string, row: number, col: number): Token => {
-    const rule = findRuleByToken(word.trim());
+export const createToken = (word: string, row: number, col: number, rules: Array<Rule>): Token => {
+    const rule = findRuleByToken(word.trim(), rules);
     const item: Token = {
         type: rule.type,
         value: rule.cast(word.trim()),

@@ -2,9 +2,6 @@ import rules from '../rules';
 import OpType from './../operations';
 
 describe('rules', () => {
-
-
-
     test('a comment is parse as an operation comment ', () => {
         const comment = '# a test comment';
         const rule = rules.find((rule) => rule.check(comment));
@@ -30,7 +27,7 @@ describe('rules', () => {
         expect(rule?.type).toBe(OpType.OP_BACKWARD)
     })
 
-    test('a bk movement is parse as an operation backwords', () => {
+    test('a backward movement is parse as an operation backwords', () => {
         const move = 'backward';
         const rule = rules.find((rule) => rule.check(move));
         expect(rule?.type).toBe(OpType.OP_BACKWARD)

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1638299260753" clover="3.2.0">
+  <project timestamp="1638299260753" name="All files">
+    <metrics statements="74" coveredstatements="74" conditionals="19" coveredconditionals="19" methods="23" coveredmethods="23" elements="116" coveredelements="116" complexity="0" loc="74" ncloc="74" packages="1" files="4" classes="4"/>
+    <file name="helper.ts" path="/Users/pwe/Code/github/fudra/jogo/src/helper.ts">
+      <metrics statements="4" coveredstatements="4" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <line num="3" count="3" type="stmt"/>
+      <line num="4" count="139" type="cond" truecount="1" falsecount="0"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="8" count="138" type="stmt"/>
+    </file>
+    <file name="operations.ts" path="/Users/pwe/Code/github/fudra/jogo/src/operations.ts">
+      <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <line num="1" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="2" count="2" type="stmt"/>
+      <line num="3" count="2" type="stmt"/>
+      <line num="4" count="2" type="stmt"/>
+      <line num="5" count="2" type="stmt"/>
+      <line num="6" count="2" type="stmt"/>
+      <line num="7" count="2" type="stmt"/>
+      <line num="8" count="2" type="stmt"/>
+      <line num="11" count="2" type="stmt"/>
+    </file>
+    <file name="rules.ts" path="/Users/pwe/Code/github/fudra/jogo/src/rules.ts">
+      <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="14"/>
+      <line num="1" count="2" type="stmt"/>
+      <line num="3" count="2" type="stmt"/>
+      <line num="5" count="2" type="stmt"/>
+      <line num="8" count="36" type="stmt"/>
+      <line num="9" count="6" type="stmt"/>
+      <line num="14" count="30" type="stmt"/>
+      <line num="15" count="3" type="stmt"/>
+      <line num="20" count="25" type="stmt"/>
+      <line num="21" count="2" type="stmt"/>
+      <line num="26" count="21" type="stmt"/>
+      <line num="27" count="5" type="stmt"/>
+      <line num="32" count="14" type="stmt"/>
+      <line num="33" count="2" type="stmt"/>
+      <line num="38" count="10" type="stmt"/>
+      <line num="39" count="6" type="stmt"/>
+      <line num="45" count="4" type="stmt"/>
+      <line num="46" count="3" type="stmt"/>
+      <line num="51" count="2" type="stmt"/>
+    </file>
+    <file name="tokenzier.ts" path="/Users/pwe/Code/github/fudra/jogo/src/tokenzier.ts">
+      <metrics statements="43" coveredstatements="43" conditionals="16" coveredconditionals="16" methods="7" coveredmethods="7"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="5" count="3" type="stmt"/>
+      <line num="7" count="3" type="stmt"/>
+      <line num="9" count="3" type="stmt"/>
+      <line num="10" count="4" type="stmt"/>
+      <line num="11" count="4" type="stmt"/>
+      <line num="14" count="3" type="stmt"/>
+      <line num="18" count="1" type="stmt"/>
+      <line num="19" count="6" type="stmt"/>
+      <line num="21" count="6" type="stmt"/>
+      <line num="22" count="6" type="stmt"/>
+      <line num="24" count="6" type="stmt"/>
+      <line num="25" count="36" type="stmt"/>
+      <line num="26" count="36" type="stmt"/>
+      <line num="29" count="36" type="cond" truecount="1" falsecount="0"/>
+      <line num="30" count="1" type="stmt"/>
+      <line num="34" count="36" type="cond" truecount="1" falsecount="0"/>
+      <line num="35" count="14" type="stmt"/>
+      <line num="37" count="14" type="cond" truecount="1" falsecount="0"/>
+      <line num="38" count="1" type="stmt"/>
+      <line num="41" count="14" type="stmt"/>
+      <line num="44" count="22" type="cond" truecount="2" falsecount="0"/>
+      <line num="45" count="16" type="stmt"/>
+      <line num="46" count="6" type="cond" truecount="1" falsecount="0"/>
+      <line num="47" count="6" type="stmt"/>
+      <line num="50" count="22" type="cond" truecount="1" falsecount="0"/>
+      <line num="51" count="8" type="stmt"/>
+      <line num="55" count="6" type="stmt"/>
+      <line num="58" count="1" type="stmt"/>
+      <line num="59" count="28" type="cond" truecount="3" falsecount="0"/>
+      <line num="60" count="2" type="stmt"/>
+      <line num="63" count="98" type="stmt"/>
+      <line num="65" count="26" type="cond" truecount="1" falsecount="0"/>
+      <line num="66" count="1" type="stmt"/>
+      <line num="69" count="25" type="stmt"/>
+      <line num="72" count="1" type="stmt"/>
+      <line num="73" count="14" type="stmt"/>
+      <line num="74" count="14" type="stmt"/>
+      <line num="84" count="14" type="stmt"/>
+      <line num="87" count="1" type="stmt"/>
+      <line num="88" count="26" type="cond" truecount="3" falsecount="0"/>
+      <line num="91" count="1" type="stmt"/>
+      <line num="92" count="39" type="cond" truecount="2" falsecount="0"/>
+    </file>
+  </project>
+</coverage>
