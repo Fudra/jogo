@@ -6,18 +6,19 @@ JOGO is a tokenzier and parser for the LOGO (also known as [Turtle Graphics](htt
 ## Roadmap
 
  * [x] Tokenize Movement (FD, BD, LT, RT)
- * [x] Tokenzie & Parse Numbers
+ * [x] Tokenize & Parse Numbers
  * [x] Tokenize Comments
  * [ ] Tokenize Loops
  * [ ] Support basic Arithmetics
  * [ ] Tokenize functions
  * [ ] Add parameters to functions
  * [ ] Add color tokens
+ * [ ] Add constant tokenization like SIN, COS, PI, E, etc.
 
 
  # Inspiration
 
-The main inspiration and the ruleset is based on this german lecture material [Logo heft](https://abz.inf.ethz.ch/wp-content/uploads/unterrichtsmaterialien/primarschulen/logo_heft_de.pdf).
+The main inspiration and the ruleset is based on this german lecture material [Logo Heft](https://abz.inf.ethz.ch/wp-content/uploads/unterrichtsmaterialien/primarschulen/logo_heft_de.pdf) and [Logo Cheatsheet](https://xlogo.inf.ethz.ch/Cheatsheet.pdf).
 
 
 # License
