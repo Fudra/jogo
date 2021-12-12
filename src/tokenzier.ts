@@ -55,12 +55,18 @@ export const tokenzieLine = (line: string, row: number, rules: Array<Rule>): Arr
     return tokens;
 }
 
-export const findRuleByToken = (value: Value, rules: Array<Rule>): Rule => {
+export const findRuleByToken = (token: Token, rules: Array<Rule>): Rule => {
+    return rules.find((rule) => rule.check();
+}
+
+export const findRuleByValue = (value: Value, rules: Array<Rule>): Rule => {
     if (value?.toString().length === 0 || value === null) {
         throw new Error(`Value is an emtpy string or null`)
     }
 
-    const rule = rules.find((rule) => rule.check(value));
+    const rule = rules.find((rule) => rule.check(
+        value.toString().toLocaleLowerCase()
+    ));
 
     if (rule == undefined) {
         throw new Error(`Unable to find a rule for the Value "${value}"`)
@@ -70,7 +76,7 @@ export const findRuleByToken = (value: Value, rules: Array<Rule>): Rule => {
 }
 
 export const createToken = (word: string, row: number, col: number, rules: Array<Rule>): Token => {
-    const rule = findRuleByToken(word.trim(), rules);
+    const rule = findRuleByValue(word.trim(), rules);
     const item: Token = {
         type: rule.type,
         value: rule.cast(word.trim()),

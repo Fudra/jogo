@@ -3,6 +3,31 @@
 JOGO is a tokenzier and parser for the LOGO (also known as [Turtle Graphics](https://en.wikipedia.org/wiki/Turtle_graphics)) Programming Languange. Its main purpose is to parse and tokenzie a logo language file. The tokenization can be parsed to another program, that handles the display for the steps of the turtle. The name JOGO is derived from the words <b>J</b>avaScript and  L<b>OGO</b>. 
 
 
+## Usage
+
+```js
+
+import Jogo from 'jogo';
+
+const script = "FD 100 LT 90 FD 100";
+
+const jogo = new Jogo();
+
+jogo.parse(script);
+
+
+
+```
+
+## Instalation
+`todo`
+
+## Test
+`npm run test`
+
+## Coverage
+`npm run coverage`
+
 ## Roadmap
 
  * [x] Tokenize Movement (FD, BD, LT, RT)
@@ -11,9 +36,11 @@ JOGO is a tokenzier and parser for the LOGO (also known as [Turtle Graphics](htt
  * [ ] Tokenize Loops
  * [ ] Support basic Arithmetics
  * [ ] Tokenize functions
- * [ ] Add parameters to functions
+ * [ ] Add variable support
+ * [ ] Add variables to functions
  * [ ] Add color tokens
  * [ ] Add constant tokenization like SIN, COS, PI, E, etc.
+ * [ ] Add tokens for Clean Screen, Reset, Pen Up, Pen Down and Back to Center.
 
 
  # Inspiration

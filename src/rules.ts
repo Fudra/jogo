@@ -34,6 +34,30 @@ const rules: Array<Rule> = [
         next: [OpType.OP_NUMBER],
     },
     {
+        type: OpType.OP_REPEAT,
+        check: (value) => ['repeat'].includes(castValueToString(value)),
+        cast: () => null,
+        next: [
+            OpType.OP_NUMBER,
+            OpType.OP_SQUARE_BRACKET_OPEN
+        ],
+    },
+    {
+        type: OpType.OP_SQUARE_BRACKET_OPEN,
+        check: (value) => ['['].includes(castValueToString(value)),
+        cast: () => null,
+        next: [
+            OpType.OP_SHOULD_EXPECT,
+            OpType.OP_SQUARE_BRACKET_CLOSE,
+        ],
+    },
+    {
+        type: OpType.OP_SQUARE_BRACKET_CLOSE,
+        check: (value) => [']'].includes(castValueToString(value)),
+        cast: () => null,
+        next: [],
+    },
+    {
         type: OpType.OP_NUMBER,
         check: (value) => Number.isInteger(+castValueToString(value)),
         cast: (value) => +value,

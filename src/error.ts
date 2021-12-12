@@ -1,5 +1,6 @@
 import OpType from './operations';
-import { Token } from './interfaces'
+import { Rule, Token } from './interfaces'
+import { findRuleByToken } from './tokenzier';
 
 export const linePositionError = (token: Token): string => {
     return `@ Ln: ${token.position.line}, Col: ${token.position.column}`
@@ -14,3 +15,10 @@ export const errorOpUnknow = (tokens: Array<Token>) => {
         }
     }
 }
+
+export const errorWrongNextToken = (tokens: Array<Token>, rules: Array<Rule>) => {
+
+    for (const [index, value] of tokens.entries()) {
+        const findRule = findRuleByToken(value, rules);
+    }
+} 
