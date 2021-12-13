@@ -2,7 +2,7 @@ import { Token } from "../interfaces";
 import OpType from "../operations";
 import rules from '../rules';
 
-import tokenzier, { checkIfLineEnds, createToken, findRuleByToken, getNextCharInLine, tokenzieLine } from "../tokenzier";
+import tokenzier, { checkIfLineEnds, createToken, findRuleByToken, findRuleByValue, getNextCharInLine, tokenizeLine } from "../tokenizer";
 
 describe('tokenizer', () => {
     test('check if line ends', () => {
@@ -84,7 +84,7 @@ describe('tokenizer', () => {
 
 
         for (const { token, type, value } of tokens) {
-            const tkn = findRuleByToken(token, rules);
+            const tkn = findRuleByValue(token, rules);
             expect(tkn).toMatchObject({ type })
             expect(tkn.cast(value)).toBe(value)
         }
@@ -93,15 +93,15 @@ describe('tokenizer', () => {
 
 
     test("rules throw an error", () => {
-        expect(() => findRuleByToken("", rules)).toThrow(Error)
-        expect(() => findRuleByToken(null, rules)).toThrow(Error)
+        expect(() => findRuleByValue("", rules)).toThrow(Error)
+        expect(() => findRuleByValue(null, rules)).toThrow(Error)
 
-        expect(() => findRuleByToken("unknow", [])).toThrow(Error)
+        expect(() => findRuleByValue("unknow", [])).toThrow(Error)
     })
 
 
     test('a line can be tokenized', () => {
-        const tokens = tokenzieLine("lt 20 fd 10", 0, rules);
+        const tokens = tokenizeLine("lt 20 fd 10", 0, rules);
 
         const expectArray =
             [
@@ -132,7 +132,7 @@ describe('tokenizer', () => {
     })
 
     test('a comment is recognized', () => {
-        const tokens = tokenzieLine("# some comment", 0, rules);
+        const tokens = tokenizeLine("# some comment", 0, rules);
 
         const expectArray =
             [
@@ -145,6 +145,19 @@ describe('tokenizer', () => {
 
         expect(tokens).toStrictEqual(expectArray)
 
+    })
+
+    it('finds a rule by token', () => {
+
+        const token =
+        {
+            type: OpType.OP_COMMENT,
+            value: "# some comment",
+            position: { line: 1, column: 1 }
+        }
+
+        const rule = findRuleByToken(token, rules);
+        expect(rule).toBe(rules[0])
     })
 
 })

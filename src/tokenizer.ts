@@ -7,7 +7,7 @@ export default (program: string, rules: Array<Rule>): Array<Token> => {
     const tokens: Array<Token> = [];
 
     for (const [index, line] of lines.entries()) {
-        const items = tokenzieLine(line, index, rules)
+        const items = tokenizeLine(line, index, rules)
         tokens.push(...items);
     }
 
@@ -15,7 +15,7 @@ export default (program: string, rules: Array<Rule>): Array<Token> => {
 }
 
 
-export const tokenzieLine = (line: string, row: number, rules: Array<Rule>): Array<Token> => {
+export const tokenizeLine = (line: string, row: number, rules: Array<Rule>): Array<Token> => {
     const tokens: Array<Token> = [];
 
     let word = '';
@@ -55,8 +55,15 @@ export const tokenzieLine = (line: string, row: number, rules: Array<Rule>): Arr
     return tokens;
 }
 
+
 export const findRuleByToken = (token: Token, rules: Array<Rule>): Rule => {
-    return rules.find((rule) => rule.check();
+    const rule = rules.find((rule) => rule.type === token.type);
+
+    if (rule === undefined) {
+        throw new Error(`Could not find rule for type: ${token.type}`)
+    }
+
+    return rule;
 }
 
 export const findRuleByValue = (value: Value, rules: Array<Rule>): Rule => {
