@@ -22,5 +22,5 @@ The main inspiration and the ruleset is based on this german lecture material [L
 
 
 # License
-This project is unter the [MIT](./LICENSE.md) license. 
+This project is unter the [MIT](./LICENSE) license. 
  
